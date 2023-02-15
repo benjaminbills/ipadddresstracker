@@ -49,6 +49,11 @@ const Home = () => {
 
     setIpAddress(val);
   };
+  const handleKeyPress = (event) => {
+    if (!/[0-9]/.test(event.key)) {
+      event.preventDefault();
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setnewValue(true);
@@ -61,16 +66,17 @@ const Home = () => {
           <h1 className='text-2xl font-medium text-white pb-5'>
             IP Address Tracker
           </h1>
-          <div className='flex min-w-[328px] min-h-[58px] justify-center rounded-2xl text-2xl  items-center'>
+          <div className='flex min-w-[328px] w-full  min-h-[58px] justify-center rounded-2xl text-2xl  items-center'>
             <form onSubmit={handleSubmit}>
               <input
-                className='w-10/12 min-h-[58px] rounded-l-2xl pl-5'
+                className='w-10/12 min-h-[48px] rounded-l-2xl pl-5'
                 // type={'number'}
                 onChange={handleChange}
+                onKeyPress={handleKeyPress}
               />
               <button
                 disabled={ipAddress.length < 4}
-                className='w-2/12 bg-black text-white min-h-[58px]  rounded-r-2xl active:bg-darkgray'
+                className='w-2/12 bg-black text-white min-h-[48px]  rounded-r-2xl active:bg-darkgray'
               >
                 {'>'}
               </button>
